@@ -1,0 +1,51 @@
+<!--pages/setting/setting.wxml-->
+
+<view class="weui-cells__title"></view>
+<view class="weui-cells weui-cells_after-title">
+  <navigator wx:if="{{level=='0'}}" url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="/imgs/admin.png" class='my-icon'></image>
+    </view>
+    <view class="weui-cell__bd">申请成为管理员</view>
+  </navigator>
+  <view wx:else>
+    <view class="weui-cell weui-cell_access" bindtap='' hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="/imgs/addshelf.png" class='my-icon'></image>
+      </view>
+      <view class="weui-cell__bd">图书导入</view>
+    </view>
+    <navigator url="manage/manage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="/imgs/shelf.png" class='my-icon'></image>
+      </view>
+      <view class="weui-cell__bd">图书删除</view>
+    </navigator>
+  </view>
+</view>
+
+<view class="weui-cells__title"></view>
+<view class="weui-cells weui-cells_after-title">
+  <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="/imgs/red_envelope.png" class='my-icon'></image>
+    </view>
+    <view class="weui-cell__bd">打赏</view>
+  </navigator>
+</view>
+
+<view class="weui-cells__title"></view>
+<view class="weui-cells weui-cells_after-title">
+  <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="/imgs/about.png" class='my-icon'></image>
+    </view>
+    <view class="weui-cell__bd">关于</view>
+  </navigator>
+  <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="/imgs/bug.png" class='my-icon'></image>
+    </view>
+    <view class="weui-cell__bd">报告Bug</view>
+  </navigator>
+</view>

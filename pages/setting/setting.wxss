@@ -1,0 +1,9 @@
+/* pages/setting/setting.wxss */
+
+.my-icon {
+  margin-right: 5px;
+  margin-top: -3px;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}

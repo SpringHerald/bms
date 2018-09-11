@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/book/book",
+    "pages/mine/mine",
+    "pages/borrowrecord/borrowrecord",
+    "pages/setting/setting",
+    "pages/setting/manage/manage",
+    "pages/setting/import/import"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "BMS2",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#707070",
+    "selectedColor": "#1296db",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/imgs/scan.png",
+        "selectedIconPath": "/imgs/scan_on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/book/book",
+        "iconPath": "/imgs/new_shelf.png",
+        "selectedIconPath": "/imgs/new_shelf_on.png",
+        "text": "所有"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "/imgs/user.png",
+        "selectedIconPath": "/imgs/user_on.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000
+  }
+}

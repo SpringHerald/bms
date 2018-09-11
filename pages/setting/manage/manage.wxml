@@ -1,0 +1,11 @@
+<!--pages/setting/manage/manage.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title">
+      <view wx:for="{{books}}" wx:key="id" class="weui-cell" hover-class="weui-cell_active" bindlongpress='deleteBook' data-id='{{item.id}}' data-nickname='{{item.nickname}}'>
+        <view class="weui-cell__bd">{{item.title}} - {{item.author}}</view>
+        <view wx:if="{{item.nickname}}" class="weui-cell__ft">{{item.nickname}}</view>
+      </view>
+    </view>
+  </view>
+</view>

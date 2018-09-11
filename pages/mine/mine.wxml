@@ -1,0 +1,20 @@
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell">
+    <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+      <image src="{{userInfo.avatarUrl}}" style="width: 50px; height: 50px; display: block" />
+    </view>
+    <navigator url="../setting/setting">{{userInfo.nickName}}</navigator>
+    <view class="weui-cell__bd"></view>
+
+    <navigator url="../borrowrecord/borrowrecord">
+      <view class="weui-cell__ft weui-cell__ft_in-access">借阅记录</view>
+    </navigator>
+  </view>
+</view>
+
+<view class="weui-cells__title">我借阅的书籍</view>
+<view class="weui-cells weui-cells_after-title">
+  <view wx:for="{{myBooks}}" wx:key="id" class="weui-cell">
+    <view class="weui-cell__bd">{{item.title}} - {{item.author}}</view>
+  </view>
+</view>

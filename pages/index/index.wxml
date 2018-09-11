@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 登录 </button>
+<view wx:else class="page">
+  <view class="page__hd">
+    <view class="page__title">文字</view>
+    <view class="page__title">{{userInfo.nickName}}</view>
+  </view>
+  <view class="page__bd ">
+    <image src='/imgs/barcode_light_cut.png' style='margin-top:-25px;height:200px;width:100%'></image>
+    <view class="weui-footer weui-footer_fixed-bottom" style='padding-bottom:40px'>
+      <view class="weui-cells__title">扫描书本条形码以借阅/归还</view>
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <button class="weui-btn borrow-btn" type="primary" bindtap='bindScanBarCode' data-status='0'>借阅</button>
+        </view>
+        <view class="weui-flex__item">
+          <button class="weui-btn return-btn" type="default" bindtap='bindScanBarCode' data-status='1'>归还</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
