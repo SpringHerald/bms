@@ -18,38 +18,39 @@ Page({
         console.log(res)
         var isbn = res.result
         console.log(isbn)
-
+        wx.showLoading({
+          title: '加载中',
+          mask: true
+        })
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 5000)
         wx.request({
-          url: 'https://mini.hailingshiliao.com/import_book.php',
+          url: app.globalData.server + 'import_book.php',
           data: {
             session_id: wx.getStorageSync('PHPSESSID'),
             isbn: isbn
           },
           success: res => {
+            wx.hideLoading()
             console.log('in setting importBook success')
             console.log(res)
             if(res.data.code != '1'){
-              //导入失败
+              //导入失败"导入失败，豆瓣中查询不到该书籍"
               wx.showModal({
                 content: res.data,
                 showCancel: false
               })
             } else {
-              // i write here
+              console.log('import/import?author=' + res.data.author + "&title=" + res.data.title + "&isbn=" + res.data.isbn)
+              wx.navigateTo({
+                url: 'import/import?author=' + res.data.author + "&title=" + res.data.title + "&isbn=" + res.data.isbn
+              })
             }
           }
         })
-      },
-      complete: (res) => {
-        // wx.showToast({
-        //   title: '失败',
-        //   icon: 'success',
-        //   duration: 2000
-        // })
       }
     })
-
-
   },
 
   /**

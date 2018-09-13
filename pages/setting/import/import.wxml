@@ -1,2 +1,37 @@
 <!--pages/setting/import/import.wxml-->
-<text>pages/setting/import/import.wxml</text>
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells__title"></view>
+    <view class="weui-form-preview">
+      <view class="icon-box">
+        <icon type="success" size="60"></icon>
+        <view class="icon-box__ctn">
+          <view class="icon-box__title">导入成功</view>
+          <view class="icon-box__desc">成功将书籍导入数据库</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">书名</view>
+          <view class="weui-form-preview__value">{{title}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">作者</view>
+          <view class="weui-form-preview__value">{{author}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">ＩＳＢＮ</view>
+          <view class="weui-form-preview__value">{{isbn}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">备注</view>
+          <view class="weui-form-preview__value">若ISBN与书本不一致，可能是由于购买的书为盗版书籍</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active" bindtap='importBook'>继续导入</navigator>
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap='goBack'>完成</navigator>
+      </view>
+    </view>
+  </view>
+</view>

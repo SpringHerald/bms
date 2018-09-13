@@ -9,7 +9,7 @@
     <view class="weui-cell__bd">申请成为管理员</view>
   </navigator>
   <view wx:else>
-    <view class="weui-cell weui-cell_access" bindtap='' hover-class="weui-cell_active">
+    <view class="weui-cell weui-cell_access" bindtap='importBook' hover-class="weui-cell_active">
       <view class="weui-cell__hd">
         <image src="/imgs/addshelf.png" class='my-icon'></image>
       </view>

@@ -1,9 +1,13 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell">
     <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-      <image src="{{userInfo.avatarUrl}}" style="width: 50px; height: 50px; display: block" />
+      <navigator url="../setting/setting">
+        <image src="{{userInfo.avatarUrl}}" style="width: 50px; height: 50px; display: block" />
+      </navigator>
     </view>
-    <navigator url="../setting/setting">{{userInfo.nickName}}</navigator>
+    <navigator url="../setting/setting">
+      {{userInfo.nickName}}
+    </navigator>
     <view class="weui-cell__bd"></view>
 
     <navigator url="../borrowrecord/borrowrecord">
@@ -11,7 +15,9 @@
     </navigator>
   </view>
 </view>
-
+    <navigator url="/pages/setting/import/import" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">测试</view>
+    </navigator>
 <view class="weui-cells__title">我借阅的书籍</view>
 <view class="weui-cells weui-cells_after-title">
   <view wx:for="{{myBooks}}" wx:key="id" class="weui-cell">

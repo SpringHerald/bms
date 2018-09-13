@@ -1,1 +1,25 @@
 /* pages/setting/import/import.wxss */
+
+icon{
+    margin-right: 20px;
+}
+.icon-box {
+  padding: 14px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.icon-box__ctn {
+  flex-shrink: 100;
+}
+
+.icon-box__title {
+  font-size: 20px;
+}
+
+.icon-box__desc {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #888;
+}
