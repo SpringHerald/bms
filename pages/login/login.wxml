@@ -1,0 +1,18 @@
+<!--pages/login/login.wxml-->
+
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title center" style='margin-top: 40%'>Welcome!</view>
+    <view class="page__desc center">欢迎使用书架小程序，请先登录</view>
+  </view>
+
+  <view class="page__bd page__bd_spacing">
+    <view class="button-sp-area">
+      <!-- 首次登录 -->
+      <button class="weui-btn" type="primary" plain="true" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 登录1 </button>
+
+      <!-- 会话过期之后登录 -->
+      <button class="weui-btn" type="primary" plain="true" wx:else bindtap='loginScanCode'> 登录2 </button>
+    </view>
+  </view>
+</view>
