@@ -11,18 +11,32 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    sessionExpired: false
   },
 
   loginScanCode: function() {
-    console.log('in login')
+    console.log('in loginScanCode')
 
     //扫描二维码
+    wx.scanCode({
+      success: (res) => {
+        console.log(res)
+        console.log(res.result)
 
-
-    wx.reLaunch({
-      url: '../index/index?s=405',
+        if (res.result.length > 27 && res.result.substring(0, 27) == "https://mp.weixin.qq.com/a/") { // 27
+          wx.reLaunch({
+            url: '/pages/index/index',
+          })
+        } else {
+          wx.showModal({
+            content: "二维码错误！",
+            showCancel: false
+          })
+        }
+      }
     })
+
   },
 
   bindGetUserInfo: function(e) {
@@ -35,21 +49,8 @@ Page({
 
     app.globalData.userInfo = e.detail.userInfo
 
-    wx.request({
-      url: app.globalData.server + 'update_user_info.php',
-      data: {
-        nickname: e.detail.userInfo.nickName,
-        session_id: wx.getStorageSync('PHPSESSID')
-      },
-      success: function(res) {
-        console.log('in bind success')
-        console.log(res)
-        // 已更新用户信息到数据库，跳转到首页
-        wx.reLaunch({
-          url: '/pages/index/index',
-        })
-      }
-    })
+    //首次打开小程序，已授权
+    loginAndReLaunch()
   },
 
   /**
@@ -61,19 +62,21 @@ Page({
 
     //如果不是用扫码打开的小程序
     if (!options.s) {
-      wx.showToast({
-        title: 'not from QR code',
-        icon: 'success',
-        duration: 3000
-      });
-
-
       wx.hideLoading()
     }
 
     if (app.globalData.userInfo) {
       console.log('in if')
-
+      if (options.s) {
+        loginAndReLaunch()
+      }
+      this.setData({
+        sessionExpired: app.globalData.sessionExpired
+      })
+      if (this.data.sessionExpired) {
+        wx.hideLoading()
+        return
+      }
       wx.reLaunch({
         url: '/pages/index/index',
       })
@@ -86,6 +89,16 @@ Page({
         console.log('in callback')
         console.log(res)
 
+        if (options.s) {
+          loginAndReLaunch()
+        }
+        this.setData({
+          sessionExpired: app.globalData.sessionExpired
+        })
+        if (this.data.sessionExpired) {
+          wx.hideLoading()
+          return
+        }
         wx.reLaunch({
           url: '/pages/index/index',
         })
@@ -97,9 +110,31 @@ Page({
       wx.getUserInfo({
         success: res => {
           app.globalData.userInfo = res.userInfo
+          wx.request({
+            url: app.globalData.server + 'update_user_info.php',
+            data: {
+              nickname: res.userInfo.nickName,
+              session_id: wx.getStorageSync('PHPSESSID')
+            },
+            success: res => {
+              console.log('in app bind success')
+              console.log(res)
 
-          wx.reLaunch({
-            url: '/pages/index/index',
+              if (res.data != '1') { //会话已过期
+                if (options.s) {
+                  loginAndReLaunch()
+                }
+                this.setData({
+                  sessionExpired: app.globalData.sessionExpired
+                })
+                wx.hideLoading()
+                return
+              }
+
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            }
           })
         }
       })
@@ -155,3 +190,38 @@ Page({
 
   }
 })
+
+// 此函数在app已取到userInfo之后调用
+function loginAndReLaunch() {
+  wx.request({
+    url: app.globalData.server + 'login.php',
+    data: {
+      code: app.globalData.code
+    },
+    success: res => {
+      console.log('in login success')
+      console.log(res)
+      console.log(res.data)
+      var wxSession = res.data
+      wx.setStorageSync('PHPSESSID', wxSession);
+
+      //TODO 可能可以简化成在login界面更新nickName
+      wx.request({
+        url: app.globalData.server + 'update_user_info.php',
+        data: {
+          nickname: app.globalData.userInfo.nickName,
+          session_id: wx.getStorageSync('PHPSESSID')
+        },
+        success: function(res) {
+          console.log('in bind success')
+          console.log(res)
+          // 已更新用户信息到数据库，跳转到首页
+          wx.reLaunch({
+            url: '/pages/index/index',
+          })
+        }
+      })
+
+    }
+  })
+}
