@@ -35,6 +35,7 @@ Page({
             wx.hideLoading()
             console.log('in setting importBook success')
             console.log(res)
+            if (res.data.code == '4') app.globalData.scanLogin()
             if(res.data.code != '1'){
               //导入失败"导入失败，豆瓣中查询不到该书籍"
               wx.showModal({
@@ -81,6 +82,7 @@ Page({
       success: res => {
         console.log('in setting onShow success')
         console.log(res)
+        if (res.data.code == '4') app.globalData.scanLogin()
         this.setData({
           level: res.data
         })

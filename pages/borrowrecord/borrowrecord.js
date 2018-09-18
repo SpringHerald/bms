@@ -1,4 +1,7 @@
 // pages/borrowrecord/borrowrecord.js
+//获取应用实例
+const app = getApp()
+
 Page({
 
   /**
@@ -20,6 +23,7 @@ Page({
       success: res => {
         console.log('in borrowrecord onLoad success')
         console.log(res)
+        if (res.data.code == '4') app.globalData.scanLogin()
         console.log(this)
         this.setData({
           records: res.data

@@ -1,4 +1,7 @@
 // pages/setting/manage/manage.js
+//获取应用实例
+const app = getApp()
+
 Page({
 
   /**
@@ -39,6 +42,7 @@ Page({
             success: res => {
               console.log('in deleteBook success')
               console.log(res)
+              if (res.data.code == '4') app.globalData.scanLogin()
               if (res.data != "1") {
                 wx.showModal({
                   content: res.data,
@@ -123,6 +127,7 @@ function getBooks(page) {
     success: res => {
       console.log('in manage getBooks success')
       console.log(res)
+      if (res.data.code == '4') app.globalData.scanLogin()
       console.log(page)
       page.setData({
         books: res.data

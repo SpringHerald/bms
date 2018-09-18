@@ -56,6 +56,7 @@ function borrowRequest(isbn, status, force) {
     success: res => {
       console.log('in borrow scan success')
       console.log(res)
+      if (res.data.code == '4') app.globalData.scanLogin()
       if (res.data.code == "1") {
         if (status == "0") var title = '借阅成功'
         else var title = '还书成功'

@@ -8,7 +8,8 @@
     "pages/borrowrecord/borrowrecord",
     "pages/setting/setting",
     "pages/setting/manage/manage",
-    "pages/setting/import/import"
+    "pages/setting/import/import",
+    "pages/setting/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",

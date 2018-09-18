@@ -1,6 +1,11 @@
 //app.js
 App({
   onLaunch: function () {
+    // 展示本地存储能力
+    var logs = wx.getStorageSync('logs') || []
+    logs.unshift(Date.now())
+    wx.setStorageSync('logs', logs)
+
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -8,11 +13,6 @@ App({
     setTimeout(function () {
       wx.hideLoading()
     }, 5000)
-
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
 
     // 登录
     wx.login({
@@ -37,15 +37,14 @@ App({
                     this.globalData.userInfo = res.userInfo
 
                     wx.request({
-                      url: this.globalData.server + 'update_user_info.php',
+                      url: this.globalData.server + 'session.php',
                       data: {
-                        nickname: res.userInfo.nickName,
                         session_id: wx.getStorageSync('PHPSESSID')
                       },
                       success: res => {
                         console.log('in app update info success')
 
-                        if (res.data != '1') { //会话已过期
+                        if (res.data) { //会话已过期
                           this.globalData.sessionExpired = true
                         }
 
@@ -60,11 +59,8 @@ App({
                   }
                 })
               } else {
-                wx.hideLoading()
-                // 用户未登录
-                // wx.redirectTo({
-                //   url: '../login/login',
-                // })
+                // 用户未授权
+                // wx.hideLoading()
               }
             }
           })
@@ -79,6 +75,12 @@ App({
     server: 'https://mini.hailingshiliao.com/',
     userInfo: null,
     sessionExpired: false,
-    code:null
+    code:null,
+    scanLogin: () => {
+      console.log('in app scanLogin')
+      wx.reLaunch({
+        url: '/pages/login/login',
+      })
+    }
   }
 })

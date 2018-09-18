@@ -1,4 +1,7 @@
 // pages/book/book.js
+//获取应用实例
+const app = getApp()
+
 Page({
 
   /**
@@ -13,13 +16,15 @@ Page({
    */
   onLoad: function (options) {
     wx.request({
-      url: 'https://mini.hailingshiliao.com/get_book_list.php',
+      url: app.globalData.server + 'get_book_list.php',
       data: {
         session_id: wx.getStorageSync('PHPSESSID')
       },
       success: res => {
         console.log('in book onLoad success')
         console.log(res)
+        if (res.data.code == '4') app.globalData.scanLogin()
+
         console.log(this)
         this.setData({
           books: res.data
@@ -69,6 +74,8 @@ Page({
       success: res => {
         console.log('in book refresh success')
         console.log(res)
+        if (res.data.code == '4') app.globalData.scanLogin()
+
         console.log(this)
         this.setData({
           books: res.data

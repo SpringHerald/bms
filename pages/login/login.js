@@ -8,9 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     sessionExpired: false
   },
@@ -25,15 +22,21 @@ Page({
         console.log(res.result)
 
         if (res.result.length > 27 && res.result.substring(0, 27) == "https://mp.weixin.qq.com/a/") { // 27
-          wx.reLaunch({
-            url: '/pages/index/index',
-          })
+          loginAndReLaunch()
         } else {
           wx.showModal({
             content: "二维码错误！",
             showCancel: false
           })
         }
+      },
+      fail: res => {
+        console.log(res)
+        if (res.errMsg == "scanCode:fail cancel") return
+        wx.showModal({
+          content: "二维码错误",
+          showCancel: false
+        })
       }
     })
 
@@ -61,9 +64,9 @@ Page({
     console.log(options)
 
     //如果不是用扫码打开的小程序
-    if (!options.s) {
-      wx.hideLoading()
-    }
+    // if (!options.s) {
+    //   wx.hideLoading()
+    // }
 
     if (app.globalData.userInfo) {
       console.log('in if')
@@ -193,35 +196,27 @@ Page({
 
 // 此函数在app已取到userInfo之后调用
 function loginAndReLaunch() {
-  wx.request({
-    url: app.globalData.server + 'login.php',
-    data: {
-      code: app.globalData.code
-    },
+  wx.login({
     success: res => {
-      console.log('in login success')
-      console.log(res)
-      console.log(res.data)
-      var wxSession = res.data
-      wx.setStorageSync('PHPSESSID', wxSession);
-
-      //TODO 可能可以简化成在login界面更新nickName
       wx.request({
-        url: app.globalData.server + 'update_user_info.php',
+        url: app.globalData.server + 'login.php',
         data: {
-          nickname: app.globalData.userInfo.nickName,
-          session_id: wx.getStorageSync('PHPSESSID')
+          code: res.code,
+          nickname: app.globalData.userInfo.nickName
         },
-        success: function(res) {
-          console.log('in bind success')
+        success: res => {
+          console.log('in login success')
           console.log(res)
+          console.log(res.data)
+          var wxSession = res.data
+          wx.setStorageSync('PHPSESSID', wxSession);
+
           // 已更新用户信息到数据库，跳转到首页
           wx.reLaunch({
             url: '/pages/index/index',
           })
         }
       })
-
     }
   })
 }
