@@ -2,7 +2,7 @@
 
 <view class="weui-cells__title"></view>
 <view class="weui-cells weui-cells_after-title">
-  <navigator wx:if="{{level=='0'}}" url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+  <navigator wx:if="{{level=='0'}}" url="" class="weui-cell weui-cell_access" bindtap='applyForAdmin' hover-class="weui-cell_active">
     <view class="weui-cell__hd">
       <image src="/imgs/admin.png" class='my-icon'></image>
     </view>
@@ -36,7 +36,7 @@
 
 <view class="weui-cells__title"></view>
 <view class="weui-cells weui-cells_after-title">
-  <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+  <navigator url="about/about" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__hd">
       <image src="/imgs/about.png" class='my-icon'></image>
     </view>
@@ -46,6 +46,9 @@
     <view class="weui-cell__hd">
       <image src="/imgs/bug.png" class='my-icon'></image>
     </view>
-    <view class="weui-cell__bd">报告Bug</view>
+    <view class="weui-cell__bd" bindtap='mySetting'>报告Bug</view>
   </navigator>
 </view>
+<modal hidden="{{hiddenmodalput}}" title="请输入邀请码" confirm-text="提交" cancel-text="取消" bindcancel="cancelApply" bindconfirm="confirmApply">
+  <input type='text' placeholder="请输入" auto-focus/>
+</modal>

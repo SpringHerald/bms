@@ -1,2 +1,19 @@
 <!--pages/setting/about/about.wxml-->
-<text>pages/setting/about/about.wxml</text>
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">关于</view>
+  </view>
+  <view class="weui-article">
+    <view class="weui-article__section page__desc">声明：小程序是我利用空余时间写的，所以请不要说我不务正业 :)</view>
+    <view class="weui-article__section">
+      很惭愧，就做了一点微小的工作。
+    </view>
+    <view class="weui-article__section">
+      <text>Q：为什么要开发这样一个小程序？
+        A：最主要的目的是让同学们知道书架上有哪些书，并且这些书被谁借走了。
+        这样，同学在需要某本书时就可以和借走该图书的同学进行沟通。
+      </text>
+    </view>
+
+  </view>
+</view>

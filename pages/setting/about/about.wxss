@@ -1,1 +1,4 @@
 /* pages/setting/about/about.wxss */
+.page__hd {
+  padding-bottom: 0;
+}

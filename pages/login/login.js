@@ -201,8 +201,11 @@ function loginAndReLaunch() {
       wx.request({
         url: app.globalData.server + 'login.php',
         data: {
+          // 判断php会不会主动回收session，回收session后会不会出问题
+          // 如果原来session id过期，很可能php会重新激活该session id
           code: res.code,
-          nickname: app.globalData.userInfo.nickName
+          nickname: app.globalData.userInfo.nickName,
+          session_id: wx.getStorageSync('PHPSESSID')
         },
         success: res => {
           console.log('in login success')

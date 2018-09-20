@@ -9,7 +9,8 @@ Page({
    */
   data: {
     userInfo: {},
-    level: null
+    level: null,
+    hiddenmodalput: true
   },
 
   importBook: function() {
@@ -51,6 +52,45 @@ Page({
           }
         })
       }
+    })
+  },
+
+  mySetting: function () {
+    wx.showModal({
+      content: "为方便高效沟通，bug请致信\r\nadmin@czxs.tech。",
+      showCancel: false
+    })
+  },
+
+  applyForAdmin: function(){
+    wx.showModal({
+      title: '申请成为管理员',
+      content: '成为管理员后，你将获得以下权限：\r\n- 图书导入\r\n- 图书删除\r\n是否继续？',
+      confirmText: "继续",
+      cancelText: "取消",
+
+      success: res => {
+        console.log(res);
+        if (res.confirm) {
+          this.setData({
+            hiddenmodalput: false
+          })  
+        } else {
+          return
+        }
+      }
+    })
+  },
+  cancelApply: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
+  },
+  
+  confirmApply: function () {
+    console.log()
+    this.setData({
+      hiddenmodalput: true
     })
   },
 

@@ -36,13 +36,17 @@ App({
                     // 可以将 res 发送给后台解码出 unionId
                     this.globalData.userInfo = res.userInfo
 
+                    console.log('app check login, session id:')
+                    console.log(wx.getStorageSync('PHPSESSID'))
                     wx.request({
                       url: this.globalData.server + 'session.php',
                       data: {
                         session_id: wx.getStorageSync('PHPSESSID')
                       },
                       success: res => {
+                        // 在此检查登录状态
                         console.log('in app update info success')
+                        console.log(res)
 
                         if (res.data) { //会话已过期
                           this.globalData.sessionExpired = true
