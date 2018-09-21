@@ -80,6 +80,7 @@ App({
     userInfo: null,
     sessionExpired: false,
     code:null,
+    level: '0',
     scanLogin: () => {
       console.log('in app scanLogin')
       wx.reLaunch({

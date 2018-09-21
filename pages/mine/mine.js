@@ -19,6 +19,20 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     })
+
+    wx.request({
+      url: app.globalData.server + 'get_level.php',
+      data: {
+        session_id: wx.getStorageSync('PHPSESSID')
+      },
+      success: res => {
+        console.log('in setting onShow success')
+        console.log(res)
+        if (res.data.code == '4') app.globalData.scanLogin()
+        app.globalData.level = res.data
+        
+      }
+    })
   },
 
   /**

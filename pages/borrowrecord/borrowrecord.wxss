@@ -1,1 +1,13 @@
 /* pages/borrowrecord/borrowrecord.wxss */
+
+.weui-label {
+  width: 370rpx;
+}
+
+.weui-cell__bd {
+  text-align: right;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  margin-right: 30rpx;
+}

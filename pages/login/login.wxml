@@ -10,11 +10,19 @@
   <view class="page__bd page__bd_spacing">
     <view class="button-sp-area">
       <!-- 首次登录 -->
-      <button wx:if="{{!sessionExpired}}" class="weui-btn" type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 登录1 </button>
+      <button wx:if="{{!sessionExpired}}" class="weui-btn" type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 登录 </button>
       <!-- <button class="weui-btn" type="primary" plain="true" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 登录1 </button> -->
 
       <!-- 会话过期之后登录 -->
-      <button wx:else class="weui-btn" type="primary" plain="true" bindtap='loginScanCode'> 登录2 </button>
+      <button wx:else class="weui-btn" type="primary" plain="true" bindtap='loginScanCode'> 登录 </button>
+    </view>
+    <view class="weui-footer weui-footer_fixed-bottom">
+     
+      <text>任何问题，请致信</text>
+      <view class="weui-footer__links">
+        
+        <navigator url="" class="weui-footer__link">admin@czxs.tech</navigator>
+      </view>
     </view>
   </view>
 </view>

@@ -2,12 +2,12 @@
 
 <view class="weui-cells__title"></view>
 <view class="weui-cells weui-cells_after-title">
-  <navigator wx:if="{{level=='0'}}" url="" class="weui-cell weui-cell_access" bindtap='applyForAdmin' hover-class="weui-cell_active">
+  <view wx:if="{{level=='0'}}" url="" class="weui-cell weui-cell_access" bindtap='applyForAdmin' hover-class="weui-cell_active">
     <view class="weui-cell__hd">
       <image src="/imgs/admin.png" class='my-icon'></image>
     </view>
     <view class="weui-cell__bd">申请成为管理员</view>
-  </navigator>
+  </view>
   <view wx:else>
     <view class="weui-cell weui-cell_access" bindtap='importBook' hover-class="weui-cell_active">
       <view class="weui-cell__hd">
@@ -26,16 +26,6 @@
 
 <view class="weui-cells__title"></view>
 <view class="weui-cells weui-cells_after-title">
-  <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__hd">
-      <image src="/imgs/red_envelope.png" class='my-icon'></image>
-    </view>
-    <view class="weui-cell__bd">打赏</view>
-  </navigator>
-</view>
-
-<view class="weui-cells__title"></view>
-<view class="weui-cells weui-cells_after-title">
   <navigator url="about/about" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
     <view class="weui-cell__hd">
       <image src="/imgs/about.png" class='my-icon'></image>
@@ -50,5 +40,5 @@
   </navigator>
 </view>
 <modal hidden="{{hiddenmodalput}}" title="请输入邀请码" confirm-text="提交" cancel-text="取消" bindcancel="cancelApply" bindconfirm="confirmApply">
-  <input type='text' placeholder="请输入" auto-focus/>
+  <input type='text' placeholder="请输入" value='{{invitation_code}}' bindinput='bindInput' focus='{{!hiddenmodalput}}'/>
 </modal>
