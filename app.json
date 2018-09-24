@@ -9,12 +9,13 @@
     "pages/setting/setting",
     "pages/setting/manage/manage",
     "pages/setting/import/import",
-    "pages/setting/about/about"
+    "pages/setting/about/about",
+    "pages/login/allbook/allbook"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "BMS2",
+    "navigationBarTitleText": "书架",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

@@ -56,6 +56,13 @@ Page({
     loginAndReLaunch()
   },
 
+  reportBug: function () {
+    wx.showModal({
+      content: "为方便高效沟通，bug请致信\r\nadmin@czxs.tech。",
+      showCancel: false
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

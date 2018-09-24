@@ -16,13 +16,14 @@
       <!-- 会话过期之后登录 -->
       <button wx:else class="weui-btn" type="primary" plain="true" bindtap='loginScanCode'> 登录 </button>
     </view>
+
     <view class="weui-footer weui-footer_fixed-bottom">
-     
-      <text>任何问题，请致信</text>
       <view class="weui-footer__links">
-        
-        <navigator url="" class="weui-footer__link">admin@czxs.tech</navigator>
+        <navigator url="allbook/allbook" class="weui-footer__link">查看图书</navigator>
+        <view class="weui-footer__link" bindtap='reportBug'>报告Bug</view>
+        <navigator url="../setting/about/about" class="weui-footer__link">关于</navigator>
       </view>
+      <view class="weui-footer__text">Copyright © 2018 czxs.tech</view>
     </view>
   </view>
 </view>
