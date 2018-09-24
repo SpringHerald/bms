@@ -76,7 +76,7 @@ App({
     })
   },
   globalData: {
-    server: 'https://mini.hailingshiliao.com/',
+    server: 'https://mini.czxs.tech/',
     userInfo: null,
     sessionExpired: false,
     code:null,

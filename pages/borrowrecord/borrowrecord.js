@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     wx.request({
-      url: 'https://mini.hailingshiliao.com/get_my_borrow_record.php',
+      url: app.globalData.server + 'get_my_borrow_record.php',
       data: {
         session_id: wx.getStorageSync('PHPSESSID')
       },

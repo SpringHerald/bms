@@ -47,7 +47,7 @@ Page({
    */
   onShow: function () {
     wx.request({
-      url: 'https://mini.hailingshiliao.com/get_my_book_list.php',
+      url: app.globalData.server + 'get_my_book_list.php',
       data: {
         session_id: wx.getStorageSync('PHPSESSID')
       },

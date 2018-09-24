@@ -66,7 +66,7 @@ Page({
   onPullDownRefresh: function () {
     // wx.startPullDownRefresh()
     wx.request({
-      url: 'https://mini.hailingshiliao.com/get_book_list.php',
+      url: app.globalData.server + 'get_book_list.php',
       data: {
         session_id: wx.getStorageSync('PHPSESSID')
       },

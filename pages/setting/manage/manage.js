@@ -34,7 +34,7 @@ Page({
         console.log(res);
         if (res.confirm) {
           wx.request({
-            url: 'https://mini.hailingshiliao.com/delete_book.php',
+            url: app.globalData.server + 'delete_book.php',
             data: {
               session_id: wx.getStorageSync('PHPSESSID'),
               book_id: book_id
@@ -120,7 +120,7 @@ Page({
 function getBooks(page) {
   //TODO 按时间顺序倒序
   wx.request({
-    url: 'https://mini.hailingshiliao.com/get_book_list.php',
+    url: app.globalData.server + 'get_book_list.php',
     data: {
       session_id: wx.getStorageSync('PHPSESSID')
     },

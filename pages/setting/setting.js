@@ -151,7 +151,7 @@ Page({
    */
   onShow: function() {
     wx.request({
-      url: 'https://mini.hailingshiliao.com/get_level.php',
+      url: app.globalData.server + 'get_level.php',
       data: {
         session_id: wx.getStorageSync('PHPSESSID')
       },
